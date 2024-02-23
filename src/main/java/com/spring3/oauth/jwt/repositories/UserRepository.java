@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends RefreshableCRUDRepository<UserInfo, Long> {
 
-   public UserInfo findByUsername(String username);
+   public UserInfo findByUserName(String username);
    UserInfo findFirstById(Long id);
 
 }

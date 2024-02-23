@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
             if(oldUser != null){
                 oldUser.setId(user.getId());
                 oldUser.setPassword(user.getPassword());
-                oldUser.setUsername(user.getUsername());
+                oldUser.setUserName(user.getUserName());
                 oldUser.setRoles(user.getRoles());
 
                 savedUser = userRepository.save(oldUser);
@@ -76,7 +76,8 @@ public class UserServiceImpl implements UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetail = (UserDetails) authentication.getPrincipal();
         String usernameFromAccessToken = userDetail.getUsername();
-        UserInfo user = userRepository.findByUsername(usernameFromAccessToken);
+
+        UserInfo user = userRepository.findByUserName(usernameFromAccessToken);
         UserResponse userResponse = modelMapper.map(user, UserResponse.class);
         return userResponse;
     }
